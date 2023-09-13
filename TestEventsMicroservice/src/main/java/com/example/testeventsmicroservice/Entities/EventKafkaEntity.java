@@ -1,18 +1,17 @@
-package com.example.kafkaproducermicroservice.Entities;
+package com.example.testeventsmicroservice.Entities;
 
-import java.util.Date;
 import java.util.List;
 
-public record Event(
+public record EventKafkaEntity(
         String id,
         String name,
         String country,
         String type,
         String description,
         String statusOfImportance,
-        Date time,
-        Double actual,
-        Double forecast,
-        Double previous,
+        long time,
+        double actual,
+        double forecast,
+        double previous,
         List<String> linkedEventsIds
-){}
+) {}

@@ -1,13 +1,13 @@
-package com.example.eventsmicroservice;
+package com.example.kafkaconsumermicroservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EventsMicroserviceApplication {
+public class KafkaConsumerMicroserviceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(EventsMicroserviceApplication.class, args);
+        SpringApplication.run(KafkaConsumerMicroserviceApplication.class, args);
     }
 
 }

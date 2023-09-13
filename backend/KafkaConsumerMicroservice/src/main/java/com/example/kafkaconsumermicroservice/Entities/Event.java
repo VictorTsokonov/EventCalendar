@@ -1,4 +1,4 @@
-package com.example.kafkaproducermicroservice.Entities;
+package com.example.kafkaconsumermicroservice.Entities;
 
 import java.util.Date;
 import java.util.List;
