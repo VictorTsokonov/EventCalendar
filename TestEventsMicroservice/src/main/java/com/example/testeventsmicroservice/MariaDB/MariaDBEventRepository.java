@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -51,6 +52,37 @@ public class MariaDBEventRepository implements EventRepository {
             return Optional.empty();
         }
     }
+
+    @Override
+    public List<EventEntity> findEventsByCountryAndTypeAndStatusOfImportance(String country, String type, String statusOfImportance, int year, int month) {
+
+        StringBuilder sql = new StringBuilder("SELECT * FROM events WHERE ");
+        List<Object> params = new ArrayList<>();
+
+        if(!country.equals("All")) {
+            sql.append("country = ? AND ");
+            params.add(country);
+        }
+
+        if(!type.equals("All")) {
+            sql.append("type = ? AND ");
+            params.add(type);
+        }
+
+        if(!statusOfImportance.equals("All")) {
+            sql.append("status_of_importance = ? AND ");
+            params.add(statusOfImportance);
+        }
+
+        sql.append("YEAR(time) = ? AND MONTH(time) = ?");
+        params.add(year);
+        params.add(month);
+
+        return jdbcTemplate.query(sql.toString(), new EventRowMapper(), params.toArray());
+    }
+
+
+
 
 
 

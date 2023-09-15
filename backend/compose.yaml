@@ -20,3 +20,14 @@ services:
       MARIADB_PASSWORD: password
     ports:
       - '3307:3306'
+
+  mariadb2:
+    image: mariadb:10.10
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: password
+      MARIADB_USER: admin
+      MARIADB_DATABASE: users
+      MARIADB_PASSWORD: password
+    ports:
+      - '3308:3306'

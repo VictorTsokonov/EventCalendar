@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/events")
@@ -30,6 +31,32 @@ public class EventController {
         this.linkedEventService = linkedEventService;
     }
 
+    @GetMapping("/filtered")
+    public ResponseEntity<List<EventEntity>> getFilteredEvents(
+            @RequestParam String country,
+            @RequestParam String type,
+            @RequestParam String statusOfImportance,
+            @RequestParam int year,
+            @RequestParam int month
+    ) {
+        List<EventEntity> events = eventService.getFilteredEvents(country, type, statusOfImportance, year, month);
+        return ResponseEntity.ok(events);
+    }
+
+    @GetMapping("/foff")
+    public String omg() {
+        return "wtf";
+    }
+
+    @GetMapping("/{id}")
+    public EventEntity getEventById(@PathVariable String id) {
+//        return "FUCK OFF";
+        Optional<EventEntity> eventEntityOptional = eventService.getEvent(id);
+        return eventEntityOptional.orElse(null);
+    }
+
+
+
     // Existing method for creating or updating an event
     @PostMapping("/createOrUpdateEvent")
     public ResponseEntity<EventEntity> createOrUpdateEvent(@RequestBody EventKafkaEntity eventKafkaEntity) {
@@ -37,7 +64,6 @@ public class EventController {
             EventEntity savedEventEntity = eventService.createOrUpdateEvent(eventKafkaEntity);
             return new ResponseEntity<>(savedEventEntity, HttpStatus.CREATED);
         } catch (Exception e) {
-            // log the error (consider using a logger instead of printStackTrace)
             e.printStackTrace();
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -98,6 +124,12 @@ public class EventController {
     public ResponseEntity<Void> deleteLinkedEvent(@RequestParam String eventId, @RequestParam String linkedEventId) {
         linkedEventService.deleteLinkedEvent(eventId, linkedEventId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/linkedEventsDetailsByEventId")
+    public ResponseEntity<List<EventEntity>> getLinkedEventsDetailsByEventId(@RequestParam String eventId) {
+        List<EventEntity> linkedEventsDetails = eventService.getLinkedEventsWithDetails(eventId);
+        return new ResponseEntity<>(linkedEventsDetails, HttpStatus.OK);
     }
 }
 

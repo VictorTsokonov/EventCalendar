@@ -46,6 +46,7 @@ public interface EventRepository {
 
     List<EventEntity> findEventsByCountryAndTypeAndName(String country, String type, String name);
 
+    // Implement fetch by country, type and status of importance
+    List<EventEntity> findEventsByCountryAndTypeAndStatusOfImportance(String country, String type, String statusOfImportance, int year, int month);
 
-    // Additional methods for finding events based on various criteria, utilizing the indexes you've created, can be added here.
 }

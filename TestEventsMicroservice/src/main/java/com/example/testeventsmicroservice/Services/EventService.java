@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EventService {
@@ -81,6 +83,12 @@ public class EventService {
         );
     }
 
+    public List<EventEntity> getFilteredEvents(String country, String type, String statusOfImportance, int year, int month) {
+        return eventRepository.findEventsByCountryAndTypeAndStatusOfImportance(country, type, statusOfImportance, year, month);
+    }
+
+
+
 
     @Transactional
     public void createLinkedEvents(EventKafkaEntity eventKafkaEntity) {
@@ -122,6 +130,22 @@ public class EventService {
 
     public List<EventEntity> getEventsByTimeAndCountry(Date time, String country) {
         return eventRepository.getEventsByTimeAndCountry(time, country);
+
+
+    }
+
+    public Optional<EventEntity> getEvent(String id) {
+        return eventRepository.getEvent(id);
+    }
+
+    public List<EventEntity> getLinkedEventsWithDetails(String eventId) {
+        List<LinkedEventEntity> linkedEventEntities = linkedEventRepository.getLinkedEventsByEventId(eventId);
+
+        return linkedEventEntities.stream()
+                .map(linkedEventEntity -> getEvent(linkedEventEntity.linkedEventId()))
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .collect(Collectors.toList());
     }
 
 

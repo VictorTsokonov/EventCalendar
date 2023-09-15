@@ -108,14 +108,6 @@ import java.util.stream.IntStream;
 
 public class RandomEventGenerator {
 
-    private static final String[] COUNTRIES = {
-            "USA", "Canada", "UK", "Germany", "France", "Spain", "Australia", "Japan", "China", "India",
-            "Brazil", "Mexico", "Russia", "South Africa", "Turkey", "Italy", "Sweden", "Norway", "Finland", "Denmark",
-            "Poland", "Ukraine", "Greece", "Portugal", "Netherlands", "Belgium", "Ireland", "Austria", "Switzerland", "Luxembourg",
-            "New Zealand", "Singapore", "Malaysia", "Thailand", "Philippines", "Vietnam", "South Korea", "Indonesia", "Taiwan", "Hong Kong",
-            "Saudi Arabia", "UAE", "Qatar", "Kuwait", "Oman", "Israel", "Egypt", "Morocco", "Algeria", "Tunisia",
-            "Argentina", "Chile", "Peru", "Colombia", "Venezuela", "Uruguay", "Paraguay", "Ecuador", "Bolivia", "Costa Rica"
-    };
 
     private static final String[] EVENTS = {
             "Music Concert", "Food Festival", "Tech Conference", "Art Exhibition", "Film Festival",
@@ -128,6 +120,15 @@ public class RandomEventGenerator {
             "Nature Walk", "Bird Watching", "Stargazing Event", "Meteor Shower Viewing", "Solar Eclipse Viewing",
             "Lunar Eclipse Viewing", "Wellness Retreat", "Yoga Retreat", "Meditation Retreat", "Spiritual Retreat",
             "Business Networking", "Startup Pitch Event", "Hackathon", "Gaming Tournament", "Film Making Workshop"
+    };
+
+    private static final String[] COUNTRIES = {
+            "USA", "Canada", "UK", "Germany", "France", "Spain", "Australia", "Japan", "China", "India",
+            "Brazil", "Mexico", "Russia", "South Africa", "Turkey", "Italy", "Sweden", "Norway", "Finland", "Denmark",
+            "Poland", "Ukraine", "Greece", "Portugal", "Netherlands", "Belgium", "Ireland", "Austria", "Switzerland", "Luxembourg",
+            "New Zealand", "Singapore", "Malaysia", "Thailand", "Philippines", "Vietnam", "South Korea", "Indonesia", "Taiwan", "Hong Kong",
+            "Saudi Arabia", "UAE", "Qatar", "Kuwait", "Oman", "Israel", "Egypt", "Morocco", "Algeria", "Tunisia",
+            "Argentina", "Chile", "Peru", "Colombia", "Venezuela", "Uruguay", "Paraguay", "Ecuador", "Bolivia", "Costa Rica"
     };
 
     private static final String[] STATUS_OF_IMPORTANCE = {

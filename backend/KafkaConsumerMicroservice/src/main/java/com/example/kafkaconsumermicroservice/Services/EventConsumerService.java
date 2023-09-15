@@ -16,7 +16,7 @@ public class EventConsumerService {
         this.restTemplate = restTemplate;
     }
 
-    @KafkaListener(topics = "events", groupId = "events", containerFactory = "kafkaListenerContainerFactory")
+    @KafkaListener(topics = "events", groupId = "events2", containerFactory = "kafkaListenerContainerFactory")
     public void consumeEvent(Event event) {
         System.out.println("Consumed event: " + event);
 

@@ -15,10 +15,11 @@ CREATE TABLE events (
                         INDEX (time, status_of_importance),
 
                         INDEX (time, country, type),
-                        INDEX (time, type, country),
+
 
                         INDEX (time, status_of_importance, country),
-                        INDEX (time, country, status_of_importance)
+                        INDEX (time, country, type, status_of_importance)
+
 
 
 
