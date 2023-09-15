@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/notes")
 public class NoteController {
@@ -29,6 +31,18 @@ public class NoteController {
         return noteService.getNote(id)
                 .map(noteEntity -> new ResponseEntity<>(noteEntity, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<NoteEntity>> getNotesByUserId(@PathVariable String userId) {
+        List<NoteEntity> notes = noteService.getAllNotesByUserId(userId);
+        return new ResponseEntity<>(notes, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<Void> deleteNoteByUserIdAndId(@RequestParam long userId, @RequestParam long id) {
+        noteService.deleteNoteByUserIdAndId(userId, id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     // ... (implement other endpoints like update, delete, etc.) ...

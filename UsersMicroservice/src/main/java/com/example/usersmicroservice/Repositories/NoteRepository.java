@@ -18,4 +18,6 @@ public interface NoteRepository {
     void deleteNote(String id);
 
     List<NoteEntity> getAllNotesByUserId(String userId);
+
+    void deleteNoteByUserIdAndId(long userId, long id);
 }

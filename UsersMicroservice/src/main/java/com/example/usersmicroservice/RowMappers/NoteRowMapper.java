@@ -11,7 +11,8 @@ public class NoteRowMapper implements RowMapper<NoteEntity> {
     public NoteEntity mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new NoteEntity(
                 rs.getLong("id"),
-                rs.getLong("userId"),
+                rs.getLong("user_id"),
+                rs.getString("event_name"),
                 rs.getString("text")
         );
     }
